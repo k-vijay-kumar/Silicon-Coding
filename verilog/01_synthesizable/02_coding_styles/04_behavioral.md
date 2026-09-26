@@ -2,21 +2,22 @@
 
 Behavioral Style (Procedural Block Syntax Flow)
 
-Objective: Model hardware algorithmically over time using sequential or software-like logical evaluation branches.
+Objective: Describe hardware behavior with procedural statements. Combinational processes describe logic; clocked processes describe state.
 
+```verilog
 // 2-to-1 Multiplexer: Behavioral Procedural Implementation
 module behavioral_mux (
     input  wire a,      // Input data channel 0
     input  wire b,      // Input data channel 1
     input  wire sel,    // Binary control select line
-    output reg  out     // MUST be declared as a 'reg' type because it is assigned in an always block
+    output reg  out     // Verilog procedural variable; SystemVerilog may use logic
 );
 
     // Procedural Sensitivity Flow
-    // always @(*) triggers instantly on any change of input variables (a, b, sel)
+    // The simulator schedules this process when a, b, or sel changes.
     always @(*) begin
         
-        // Software-like conditional decision structure
+        // Assign a value on every path to describe combinational logic.
         if (sel) begin
             out = b;    // Use BLOCKING assignment '=' for combinational logic
         end else begin
@@ -26,3 +27,6 @@ module behavioral_mux (
     end
 
 endmodule
+```
+
+In Verilog, a signal assigned procedurally is declared as `reg`. This describes a variable type, not necessarily a physical register. In SystemVerilog, `logic` is commonly used for this purpose.

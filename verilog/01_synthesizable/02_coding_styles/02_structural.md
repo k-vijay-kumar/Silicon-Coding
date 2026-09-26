@@ -2,8 +2,9 @@
 
 Structural Style (Gate-Level Syntax Flow)
 
-Objective: Map hardware explicitly using raw primitive logic gates. This style directly mirrors a physical circuit schematic.
+Objective: Describe logic structure explicitly using primitive gates and module instances. Synthesis may optimize or remap this structure, so it does not guarantee a one-to-one physical implementation.
 
+```verilog
 // 2-to-1 Multiplexer: Structural Primitive Implementation
 module structural_mux (
     input  wire a,      // Input data channel 0
@@ -24,3 +25,4 @@ module structural_mux (
     or  u_or   (out, a_gated, b_gated);   // Combines channels to output
     
 endmodule
+```
